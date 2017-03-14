@@ -9,21 +9,23 @@ GRID_HEIGHT = GRID_WIDTH
 
 class BowlingBall:
     
-    MOMENT_LENGTH = 10
+    MOMENT_LENGTH = 1
     
     def __init__(self):
         self.moment = self.MOMENT_LENGTH
-        self.ball = self.GridCircle((1,1))
+        self.ball = self.GridCircle.Circle((10,10))
+        self.accel = .1
         
     def draw_me(self, canvas):
+        self.accel += .1
         if self.moment > 0:
             self.moment -= 1
         else:
             new_center = (
                 self.ball.center[0],
-                self.ball.center[1] + 1
+                self.ball.center[1] + 1 * self.accel
             )
-            self.ball = self.GridCircle(new_center)
+            self.ball = self.GridCircle.Circle(new_center)
             print self.ball
             self.moment = self.MOMENT_LENGTH
             
@@ -67,12 +69,12 @@ class BowlingBall:
             
             def __init__(self, center_point, radius=RADIUS, shape_attributes=SHAPE_ATTRIBUTES):
                 self.radius = radius
-                self.center_point = center_point
+                self.center = center_point
                 self.shape_attributes = shape_attributes
 
             def draw_me(self, canvas):
                 canvas.draw_circle(
-                    self.center_point,
+                    self.center,
                     self.radius,
                     self.shape_attributes["line_width"],
                     self.shape_attributes["fill_color"],
