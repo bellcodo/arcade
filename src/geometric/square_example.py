@@ -26,18 +26,20 @@ class Rect:
     class Square:
         
         DEFAULT_SQUARE_DRAW_ATTRIBUTES = {
-            "line_width": 1,
-            "line_color": 'Green',
+            "line_width": 2,
+            "line_color": 'White',
             "fill_color": 'Orange'
         }        
 
         SHAPE_ATTRIBUTES = DEFAULT_SQUARE_DRAW_ATTRIBUTES
         SIZE = Constants.GLOBAL_DEFAULT_SQUARE_SIZE
 
-        def __init__(self, top_left_pt, size=SIZE, shape_attributes=SHAPE_ATTRIBUTES):
+        def __init__(self, top_left_pt, size=SIZE, shape_attributes=SHAPE_ATTRIBUTES, color=None):
             self.top_left_point = top_left_pt
-            self.shape_attributes = shape_attributes
+            self.shape_attributes = dict(shape_attributes)
             self.size = size
+            if color:
+                self.shape_attributes["fill_color"] = color
 
         def draw_me(self, canvas):
             size = self.size
@@ -50,10 +52,12 @@ class Rect:
             )
 #
 
-sqr = Rect.Square((1,1))
+sqr_default = Rect.Square((1,1))
+sqr_blue = Rect.Square((2,2), color="Blue")
                                
 def draw(canvas):
-    sqr.draw_me(canvas)
+    sqr_default.draw_me(canvas)
+    sqr_blue.draw_me(canvas)
 
 class Graphics:   
     WINDOW_WIDTH = Constants.WINDOW_WIDTH
