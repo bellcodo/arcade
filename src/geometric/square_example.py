@@ -1,17 +1,15 @@
 import simplegui, time, random
 
-WINDOW_WIDTH = 500
-WINDOW_HEIGHT = WINDOW_WIDTH
-GLOBAL_DEFAULT_SQUARE_SIZE = 25
+class Constants:
 
-GRID_WIDTH = WINDOW_WIDTH / GLOBAL_DEFAULT_SQUARE_SIZE
-GRID_HEIGHT = GRID_WIDTH
+    WINDOW_WIDTH = 500
+    WINDOW_HEIGHT = WINDOW_WIDTH
+    GLOBAL_DEFAULT_SQUARE_SIZE = 25
 
-DEFAULT_SQUARE_DRAW_ATTRIBUTES = {
-    "line_width": 1,
-    "line_color": 'Green',
-    "fill_color": 'Orange'
-}
+    GRID_WIDTH = WINDOW_WIDTH / GLOBAL_DEFAULT_SQUARE_SIZE
+    GRID_HEIGHT = GRID_WIDTH
+
+
 
 class Rect:
     
@@ -26,9 +24,15 @@ class Rect:
         ] 
 
     class Square:
+        
+        DEFAULT_SQUARE_DRAW_ATTRIBUTES = {
+            "line_width": 1,
+            "line_color": 'Green',
+            "fill_color": 'Orange'
+        }        
 
         SHAPE_ATTRIBUTES = DEFAULT_SQUARE_DRAW_ATTRIBUTES
-        SIZE = GLOBAL_DEFAULT_SQUARE_SIZE
+        SIZE = Constants.GLOBAL_DEFAULT_SQUARE_SIZE
 
         def __init__(self, top_left_pt, size=SIZE, shape_attributes=SHAPE_ATTRIBUTES):
             self.top_left_point = top_left_pt
@@ -46,17 +50,23 @@ class Rect:
             )
 
 grid_list = []
-for i in range(GRID_WIDTH):
-    for j in range(GRID_WIDTH):
+for i in range(Constants.GRID_WIDTH):
+    for j in range(Constants.GRID_WIDTH):
         sqr = Rect.Square((i,j))
         grid_list.append(sqr)
                                
 def draw(canvas):
     for sqr in grid_list:
         sqr.draw_me(canvas)
-        
-frame = simplegui.create_frame("Home", WINDOW_WIDTH, WINDOW_HEIGHT)
-frame.set_canvas_background("Silver")
-frame.set_draw_handler(draw)
-frame.start()        
+
+class Graphics:   
+    WINDOW_WIDTH = Constants.WINDOW_WIDTH
+    WINDOW_HEIGHT = Constants.WINDOW_HEIGHT
+    
+    def __init__(self, width=WINDOW_WIDTH, height=WINDOW_HEIGHT):
+        frame = simplegui.create_frame("Home", width, height)
+        frame.set_canvas_background("Silver")
+        frame.set_draw_handler(draw)
+        frame.start()        
               
+Graphics()
