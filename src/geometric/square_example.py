@@ -48,16 +48,12 @@ class Rect:
                 self.shape_attributes["line_color"],
                 self.shape_attributes["fill_color"]
             )
+#
 
-grid_list = []
-for i in range(Constants.GRID_WIDTH):
-    for j in range(Constants.GRID_WIDTH):
-        sqr = Rect.Square((i,j))
-        grid_list.append(sqr)
+sqr = Rect.Square((1,1))
                                
 def draw(canvas):
-    for sqr in grid_list:
-        sqr.draw_me(canvas)
+    sqr.draw_me(canvas)
 
 class Graphics:   
     WINDOW_WIDTH = Constants.WINDOW_WIDTH
