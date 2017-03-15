@@ -1,3 +1,7 @@
+# Need to set a global constant
+Constants.GLOBAL_DEFAULT_SQUARE_SIZE = 50
+##
+
 sqrs = []
 for i in range(8):
     for j in range(8):
