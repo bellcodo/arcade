@@ -5,13 +5,10 @@ Constants.GLOBAL_DEFAULT_SQUARE_SIZE = 50
 sqrs = []
 for i in range(8):
     for j in range(8):
-        sqr = Rect.Square((i,j))
-        if j % 2 == 0 and i % 2 == 0:
+        sqr = Rect.Square((i + 1, j + 1), color="Black")
+        
+        if i % 2 == j % 2:
             sqr.set_color("Red")
-        elif j % 2 != 0 and i % 2 != 0:
-            sqr.set_color("Red")
-        else:
-            sqr.set_color("Black")
 
         sqrs.append(sqr)
                                
