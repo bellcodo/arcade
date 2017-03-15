@@ -36,8 +36,11 @@ class Rect:
             self.shape_attributes = dict(shape_attributes)
             self.size = size
             if color:
-                self.shape_attributes["fill_color"] = color
-
+                self.set_color(color)
+        
+        def set_color(self, color):
+            self.shape_attributes["fill_color"] = color
+            
         def draw_me(self, canvas):
             size = self.size
             (x,y) = self.top_left_point
