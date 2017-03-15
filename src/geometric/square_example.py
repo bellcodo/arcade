@@ -8,9 +8,6 @@ class Constants:
 
     GRID_WIDTH = WINDOW_WIDTH / GLOBAL_DEFAULT_SQUARE_SIZE
     GRID_HEIGHT = GRID_WIDTH
-
-
-
 class Rect:
     
     def rect_coords (length, height, startpos = (0, 0)) :
@@ -68,5 +65,5 @@ class Graphics:
         frame.set_canvas_background("Silver")
         frame.set_draw_handler(draw)
         frame.start()        
-              
+#              
 Graphics()
