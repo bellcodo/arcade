@@ -52,12 +52,17 @@ class Rect:
             )
 #
 
+sqrs = []
+
 sqr_default = Rect.Square((1,1))
 sqr_blue = Rect.Square((2,2), color="Blue")
+
+sqrs.extend([sqr_default, sqr_blue])
+
                                
 def draw(canvas):
-    sqr_default.draw_me(canvas)
-    sqr_blue.draw_me(canvas)
+    for sqr in sqrs:
+        sqr.draw_me(canvas)
 
 class Graphics:   
     WINDOW_WIDTH = Constants.WINDOW_WIDTH
