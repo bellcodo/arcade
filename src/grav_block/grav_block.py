@@ -44,10 +44,10 @@ class Rect:
         def set_color(self, color):
             self.shape_attributes["fill_color"] = color
             
-        def update_location(self, new_pos):
+        def update_location(self, new_pos, edges=[Constants.GRID_HEIGHT, 15]):
             check_bottom_edge = new_pos[1] + 1
 
-            if check_bottom_edge > Constants.GRID_HEIGHT:
+            if filter(lambda x: check_bottom_edge > x, edges):
                 self.updating = False
                 
             self.top_left_point = new_pos
