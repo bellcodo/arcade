@@ -38,12 +38,20 @@ class Rect:
             self.size = size
             if color:
                 self.set_color(color)
+            self.updating = True
         
         def set_color(self, color):
             self.shape_attributes["fill_color"] = color
             
         def update_location(self, new_pos):
+            check_bottom_edge = new_pos[1] + 1
+            print check_bottom_edge
+
+            if check_bottom_edge > Constants.GRID_HEIGHT:
+                self.updating = False
+                
             self.top_left_point = new_pos
+            
             
         def draw_me(self, canvas):
             size = self.size
@@ -54,8 +62,10 @@ class Rect:
                 self.shape_attributes["line_color"],
                 self.shape_attributes["fill_color"]
             )
-            (x, y) = self.top_left_point
-            self.update_location((x, y+.05))
+            
+            if self.updating:
+                (x, y) = self.top_left_point
+                self.update_location((x, y+.05))
 #
 
 sqrs = []
