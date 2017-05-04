@@ -32,13 +32,13 @@ class Rect:
         SHAPE_ATTRIBUTES = DEFAULT_SQUARE_DRAW_ATTRIBUTES
         SIZE = Constants.GLOBAL_DEFAULT_SQUARE_SIZE
 
-        def __init__(self, top_left_pt, size=SIZE, shape_attributes=SHAPE_ATTRIBUTES, color=None):
+        def __init__(self, top_left_pt, size=SIZE, shape_attributes=SHAPE_ATTRIBUTES, color=None, updating=False):
             self.top_left_point = top_left_pt
             self.shape_attributes = dict(shape_attributes)
             self.size = size
             if color:
                 self.set_color(color)
-            self.updating = True
+            self.updating = updating
         
         def set_color(self, color):
             self.shape_attributes["fill_color"] = color
@@ -73,7 +73,7 @@ sqr_default = Rect.Square((1,1))
 sqr_blue = Rect.Square((2,2), color="Blue")
 
 sqrs.extend([sqr_default, sqr_blue])
-sqrs.extend([ Rect.Square((i,i)) for i in range(Constants.GRID_WIDTH)])
+sqrs.extend([ Rect.Square((i,i), updating=True) for i in range(Constants.GRID_WIDTH)])
 
                                
 def draw(canvas):
