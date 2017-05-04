@@ -45,7 +45,6 @@ class Rect:
             
         def update_location(self, new_pos):
             check_bottom_edge = new_pos[1] + 1
-            print check_bottom_edge
 
             if check_bottom_edge > Constants.GRID_HEIGHT:
                 self.updating = False
@@ -74,6 +73,7 @@ sqr_default = Rect.Square((1,1))
 sqr_blue = Rect.Square((2,2), color="Blue")
 
 sqrs.extend([sqr_default, sqr_blue])
+sqrs.extend([ Rect.Square((i,i)) for i in range(Constants.GRID_WIDTH)])
 
                                
 def draw(canvas):
