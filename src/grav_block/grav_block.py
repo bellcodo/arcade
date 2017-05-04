@@ -9,6 +9,7 @@ class Constants:
 
     GRID_WIDTH = WINDOW_WIDTH / GLOBAL_DEFAULT_SQUARE_SIZE
     GRID_HEIGHT = GRID_WIDTH
+
 class Rect:
     
     def rect_coords (length, height, startpos = (0, 0)) :
@@ -65,19 +66,33 @@ class Rect:
             if self.updating:
                 (x, y) = self.top_left_point
                 self.update_location((x, y+.05))
-#
+class BlockMap:
+    
+    def __init__(self):
+        self.block_map = {}
+        
+    def update(self, new_block):
+        self.block_map[str(new_block.top_left_point[0]) + "_" + str(new_block.top_left_point[1])] = new_block
+     
+    def add_all(self, block_list):
+        map(self.update, block_list)
 
-sqrs = []
+    def block_list(self):
+        return self.block_map.values()
+# END OF API
+
+bm = BlockMap()
 
 sqr_default = Rect.Square((1,1))
 sqr_blue = Rect.Square((2,2), color="Blue")
 
-sqrs.extend([sqr_default, sqr_blue])
-sqrs.extend([ Rect.Square((i,i), updating=True) for i in range(Constants.GRID_WIDTH)])
+
+bm.add_all([sqr_default, sqr_blue])
+bm.add_all([ Rect.Square((i,i), updating=True) for i in range(Constants.GRID_WIDTH)])
 
                                
 def draw(canvas):
-    for sqr in sqrs:
+    for sqr in bm.block_list():
         sqr.draw_me(canvas)
 
 class Graphics:   
